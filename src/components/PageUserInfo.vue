@@ -6,7 +6,7 @@
 
         <div v-if="isIngelogd">
            <div v-for="(gegevens, index) in userInfo" :key="index" >   
-                <p>  {{ gegevens.First_Name }} {{ gegevens.Name }} </p>
+                <p> {{ gegevens.First_Name }} {{ gegevens.Name }} </p>
                 <p> {{ gegevens.Mail }} </p>
                 <p v-if="gegevens.Admin === 1"> Campingbeheerder </p>
          </div>
