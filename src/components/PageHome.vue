@@ -7,6 +7,7 @@
             <p>
                 Op deze webiste kan je een campingplaats reserveren.
             </p>
+
             <div v-if="!isIngelogd">
                 <button @click="changeToCreateAccount('PageAddUser')">Account Aanmaken</button>
             </div>
@@ -31,10 +32,10 @@ import PageAddUser from './PageAddUser.vue';
                 userId: null,
                 isIngelogd: false,
                 activePage: '',
-                addAccount: false
+                addAccount: false,
             };
         },
-        methods: {
+        methods: {            
             changeToCreateAccount(page) {
                 this.activePage = page;
                 this.addAccount = true;

@@ -5,13 +5,28 @@
         </h1>
 
         <div v-if="isIngelogd">
-           <p>
-            Je bent ingelogd!
-           </p>
+            <div v-if="overzichtBoekingen.length == 0">
+                <p>
+                    Geen boekingen!
+                </p>
+            </div>
             <ul v-for="(boekeningen, index) in overzichtBoekingen" :key="index">
                 <li>
-                    {{ boekeningen.Camping_Name }} {{  boekeningen.Bescrijving }}
-                    {{ boekeningen.Start_Datum }} {{boekeningen.Eind_Datum}}
+                    <ul>
+                        <li>
+                            <p>Camping: {{ boekeningen.Camping_Name }}</p>
+                        </li>
+                        <li>
+                          <p>Omschrijving:  {{  boekeningen.Bescrijving }}</p> 
+                        </li>
+                        <li>
+                
+                            <p>Start datum: {{ new Date(boekeningen.Start_Datum).toISOString().split('T')[0] }} </p>
+                            <p>Eind datum: {{new Date(boekeningen.Eind_Datum).toISOString().split('T')[0] }} </p>
+                        </li>
+                    </ul>
+                   
+                     
                 </li>
             </ul>
             
@@ -42,7 +57,7 @@
                 const response =  await fetch("http://localhost:3000/api/boekingenUser/" + this.userId);
                 const data = await response.json();
                 this.overzichtBoekingen = data;
-                console.log('fetch aangeroepen')
+                console.log('fetch boekingen');
                 console.log(data);
             },
             checkLoginStatus() {
