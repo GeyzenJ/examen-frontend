@@ -1,18 +1,15 @@
 <template>
     <div>
-
         <div v-if="!addAccount">
             <h1>
             Camping Reserveren
-        </h1>
-        <p>
-            Op deze webiste kan je een campingplaats reserveren.
-        </p>
-        <div v-if="!isIngelogd">
-            <button @click="changeToCreateAccount('PageAddUser')">Account Aanmaken</button>
-        </div>
-        
-
+            </h1>
+            <p>
+                Op deze webiste kan je een campingplaats reserveren.
+            </p>
+            <div v-if="!isIngelogd">
+                <button @click="changeToCreateAccount('PageAddUser')">Account Aanmaken</button>
+            </div>
         </div>
         
         <div>

@@ -16,6 +16,7 @@
       <PageHome v-if="activePage == 'Home'" />
       <PageLogin v-if="activePage == 'Login'" />
       <PageUserInfo v-if="activePage == 'UserInfo'" />
+      <PageOverzichtBoekingen v-if="activePage == 'Overzicht boekingen'"/>
     </div>
 
   </div>
@@ -25,18 +26,20 @@
 import PageHome from './components/PageHome.vue';
 import PageLogin from './components/PageLogin.vue';
 import PageUserInfo from './components/PageUserInfo.vue';
+import PageOverzichtBoekingen from './components/PageOverzichtBoekingen.vue';
 
 export default {
   name: 'App',
   components: {
     PageHome,
     PageLogin,
-    PageUserInfo
+    PageUserInfo,
+    PageOverzichtBoekingen
   },
   data() {
    return { 
     activePage: 'Home',
-    pages: ['Home', 'Login', 'UserInfo']
+    pages: ['Home', 'Login', 'UserInfo', 'Overzicht boekingen']
     }
   },
   methods: {
