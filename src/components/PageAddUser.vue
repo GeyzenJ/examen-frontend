@@ -65,7 +65,7 @@
                         alert('Gebruiker toegevoegd!');
                         this.naarHome();
                     } else {
-                        alert('Controleer je invoer.');
+                        alert('Het is niet gelukt om je als gebruiker toe te voegen.');
                     }
             })},
             naarHome() {
