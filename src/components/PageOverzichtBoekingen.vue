@@ -10,28 +10,61 @@
                     Geen boekingen!
                 </p>
             </div>
-            <ul v-for="(boekeningen, index) in overzichtBoekingen" :key="index">
-                <li>
-                    <ul>
+        <div v-if="overzichtBoekingen != 0">
+                <h2>Aanstaande boekingen</h2>
+                <ul v-for="(boekeningen, index) in aanstaandeBoekingen" :key="index">
+                    <li>
+                        <ul>
+                            <li>
+                                <p>Camping: {{ boekeningen.Camping_Name }}</p>
+                            </li>
+                            <li>
+                            <p>Omschrijving:  {{  boekeningen.Bescrijving }}</p> 
+                            </li>
+                            <li>
+                                <p>Start datum: {{ new Date(boekeningen.Start_Datum).toLocaleDateString().split('T')[0] }} </p>
+                                <p>Eind datum: {{new Date(boekeningen.Eind_Datum).toLocaleDateString().split('T')[0] }} </p>
+                            </li>
+                            <li>
+                                <p v-if="boekeningen.Electriciteit == 1">
+                                    Plaats met electricitet: Ja
+                                </p>
+                                <p v-if="boekeningen.Electriciteit == 0">
+                                    Plaats met electricitet: Nee
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div v-if="gepasseerdeBoekingen.length != 0">
+                    <h2 >Gepasseeerde boekingen</h2>
+                    <ul v-for="(boekeningen, index) in gepasseerdeBoekingen" :key="index">
                         <li>
-                            <p>Camping: {{ boekeningen.Camping_Name }}</p>
-                        </li>
-                        <li>
-                          <p>Omschrijving:  {{  boekeningen.Bescrijving }}</p> 
-                        </li>
-                        <li>
-                
-                            <p>Start datum: {{ new Date(boekeningen.Start_Datum).toISOString().split('T')[0] }} </p>
-                            <p>Eind datum: {{new Date(boekeningen.Eind_Datum).toISOString().split('T')[0] }} </p>
+                            <ul>
+                                <li>
+                                    <p>Camping: {{ boekeningen.Camping_Name }}</p>
+                                </li>
+                                <li>
+                                <p>Omschrijving:  {{  boekeningen.Bescrijving }}</p> 
+                                </li>
+                                <li>
+                                    <p>Start datum: {{ new Date(boekeningen.Start_Datum).toLocaleDateString().split('T')[0] }} </p>
+                                    <p>Eind datum: {{new Date(boekeningen.Eind_Datum).toLocaleDateString().split('T')[0] }} </p>
+                                </li>
+                                <li>
+                                    <p v-if="boekeningen.Electriciteit == 1">
+                                        Plaats met electricitet: Ja
+                                    </p>
+                                    <p v-if="boekeningen.Electriciteit == 0">
+                                        Plaats met electricitet: Nee
+                                    </p>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                   
-                     
-                </li>
-            </ul>
-            
+                </div>
+            </div>
         </div>
-
         <div v-if="!isIngelogd">
             <p>
                 Niet ingelogd!
@@ -49,7 +82,9 @@
             return {
                 userId: null,
                 isIngelogd: false,
-                overzichtBoekingen: [],         
+                overzichtBoekingen: [],   
+                aanstaandeBoekingen: [],
+                gepasseerdeBoekingen: []      
             };
         },
         methods: {
@@ -57,8 +92,12 @@
                 const response =  await fetch("http://localhost:3000/api/boekingenUser/" + this.userId);
                 const data = await response.json();
                 this.overzichtBoekingen = data;
-                console.log('fetch boekingen');
-                console.log(data);
+                this.sorteerBoekingen();
+            },
+            sorteerBoekingen() {
+                const vandaag = new Date().toISOString().split('T')[0];
+                this.aanstaandeBoekingen = this.overzichtBoekingen.filter(boeking => boeking.Eind_Datum >= vandaag);
+                this.gepasseerdeBoekingen = this.overzichtBoekingen.filter(boeking => boeking.Eind_Datum < vandaag);
             },
             checkLoginStatus() {
                 this.userId = this.$cookies.get('userId');

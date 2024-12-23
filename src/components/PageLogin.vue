@@ -33,7 +33,8 @@
                 mail: '',
                 password: '',
                 userId: null,
-                isIngelogd: false
+                isIngelogd: false,
+                isAdmin: false
             };      
         },
         methods: {
@@ -52,6 +53,8 @@
                     });
                     if (response.ok) {
                         this.userId = this.$cookies.get('userId');
+                        this.isAdmin = this.$cookies.get('isAdmin');
+                        this.$emit('login', this.userId, this.isAdmin);
                         this.isIngelogd = true
                     } else {
                         const data = await response.json();
@@ -72,6 +75,7 @@
                 if (response.ok) {
                     this.isIngelogd = false;
                     this.userId = null; //!userId terug op null
+                    this.$emit('logout');
                 }
             },
             checkLoginStatus() {

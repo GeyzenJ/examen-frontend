@@ -1,12 +1,35 @@
 <template>
   <div id="app">
     <!-- navigatie bar -->
-     <ul>
-      <li v-for="(page, index) in pages" :key="index" @click="changePage(page)">
+
+    <p>hallo: {{  this.userId }}</p>
+    <p>isAdmin: {{this.isAdmin }}</p>
+    <p>ingelogtd: {{ this.isIngelogd }}</p>
+     
+<!-- niet ingelogd -->
+    <ul v-if="!isIngelogd">
+      <li v-for="(page, index) in pagesNietIngelogd" :key="index" @click="changePage(page)">
+        {{ page }}
+      </li>
+     </ul>
+    <!-- ingelogd -->
+     <!-- geen admin -->
+     <div v-if="isIngelogd">
+      <ul v-if="this.isAdmin == false">
+      <li v-for="(page, index) in pagesIngelogd" :key="index" @click="changePage(page)">
         {{ page }}
       </li>
      </ul>
     
+     <!-- ingelogd WEl admin -->
+        <ul v-if="this.isAdmin == true">
+          <li v-for="(page, index) in pagesBeheer" :key="index" @click="changePage(page)">
+            {{ page }}
+          </li>
+        </ul>
+      </div>
+
+
     <!-- om onderscheid tussen nav en content -->
      <!-- nog aanpassen naar fatsoenlijk (css) -->
      <hr>
@@ -14,10 +37,11 @@
     <!-- roept de content van de page op -->
     <div>
       <PageHome v-if="activePage == 'Home'" />
-      <PageLogin v-if="activePage == 'Login'" />
+      <PageLogin v-if="activePage == 'Login' || activePage == 'Log uit'" @login="handleLogin" @logout="handleLogout"/>
       <PageUserInfo v-if="activePage == 'Gebruikers informatie'" />
       <PageOverzichtBoekingen v-if="activePage == 'Overzicht boekingen'"/>
       <PageBoeken v-if="activePage == 'Campingplaats boeken'" />
+      <PageOverzichtBeheerCampings v-if="activePage == 'Overzicht campings'" />
     </div>
 
   </div>
@@ -29,6 +53,7 @@ import PageLogin from './components/PageLogin.vue';
 import PageUserInfo from './components/PageUserInfo.vue';
 import PageOverzichtBoekingen from './components/PageOverzichtBoekingen.vue';
 import PageBoeken from './components/PageBoeken.vue';
+import PageOverzichtBeheerCampings from './components/PageOverzichtBeheerCampings.vue';
 
 export default {
   name: 'App',
@@ -37,19 +62,38 @@ export default {
     PageLogin,
     PageUserInfo,
     PageBoeken,
-    PageOverzichtBoekingen
+    PageOverzichtBoekingen,
+    PageOverzichtBeheerCampings
   },
   data() {
    return { 
     activePage: 'Home',
-    pages: ['Home', 'Login', 'Gebruikers informatie', 'Campingplaats boeken', 'Overzicht boekingen']
+    pagesIngelogd: ['Home', 'Log uit', 'Gebruikers informatie',
+           'Campingplaats boeken', 'Overzicht boekingen'],
+    pagesNietIngelogd: ['Home', 'Login'],
+    pagesBeheer: ['Home', 'Log uit', 'Gebruikers informatie', 'Overzicht campings'],
+    userId: null,
+    isIngelogd: false,
+    isAdmin: false
     }
   },
   methods: {
     changePage(page) {
       this.activePage = page;
-    }
-  }
+    },
+        handleLogin(userId, isAdmin) {
+          this.userId = userId;
+          if (isAdmin == 1) {
+            this.isAdmin = true;
+          }          
+          this.isIngelogd = true;
+        },
+        handleLogout() {
+          this.userId = null;
+          this.isAdmin = false;
+          this.isIngelogd = false;
+        }
+      },
 }
 </script>
 

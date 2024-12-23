@@ -32,7 +32,7 @@ import PageAddUser from './PageAddUser.vue';
                 userId: null,
                 isIngelogd: false,
                 activePage: '',
-                addAccount: false,
+                addAccount: false, 
             };
         },
         methods: {            
