@@ -13,7 +13,7 @@
       </li>
      </ul>
     <!-- ingelogd -->
-     <!-- geen admin -->
+     <!-- GEEN admin -->
      <div v-if="isIngelogd">
       <ul v-if="this.isAdmin == false">
       <li v-for="(page, index) in pagesIngelogd" :key="index" @click="changePage(page)">
@@ -43,6 +43,7 @@
       <PageBoeken v-if="activePage == 'Campingplaats boeken'" />
       <PageOverzichtBeheerCampings v-if="activePage == 'Overzicht campings'" />
       <PageUpdateCamping v-if="activePage == 'Update gegevens campings'" />
+      <PageAddCamping v-if="activePage == 'Camping toevoegen'" />
     </div>
 
   </div>
@@ -56,6 +57,7 @@ import PageOverzichtBoekingen from './components/PageOverzichtBoekingen.vue';
 import PageBoeken from './components/PageBoeken.vue';
 import PageOverzichtBeheerCampings from './components/PageOverzichtBeheerCampings.vue';
 import PageUpdateCamping from './components/PageUpdateCamping.vue';
+import PageAddCamping from './components/PageAddCamping.vue';
 
 export default {
   name: 'App',
@@ -66,7 +68,8 @@ export default {
     PageBoeken,
     PageOverzichtBoekingen,
     PageOverzichtBeheerCampings,
-    PageUpdateCamping
+    PageUpdateCamping,
+    PageAddCamping
   },
   data() {
    return { 
@@ -74,7 +77,8 @@ export default {
     pagesIngelogd: ['Home', 'Log uit', 'Gebruikers informatie',
            'Campingplaats boeken', 'Overzicht boekingen'],
     pagesNietIngelogd: ['Home', 'Login'],
-    pagesBeheer: ['Home', 'Log uit', 'Gebruikers informatie', 'Overzicht campings','Update gegevens campings'],
+    pagesBeheer: ['Home', 'Log uit', 'Gebruikers informatie',
+           'Overzicht campings','Update gegevens campings', 'Camping toevoegen'],
     userId: null,
     isIngelogd: false,
     isAdmin: false
