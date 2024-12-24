@@ -56,9 +56,8 @@
                         this.isAdmin = this.$cookies.get('isAdmin');
                         this.$emit('login', this.userId, this.isAdmin);
                         this.isIngelogd = true
-                    } else {
-                        const data = await response.json();
-                        console.error('Login failed', data);
+                    } else {  
+                        alert("Login mislukt: Controleer E-mail en wachtwoord!");
                     }                  
             } catch (error) {
                 console.error(error);
