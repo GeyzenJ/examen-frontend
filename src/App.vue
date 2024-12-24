@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <!-- navigatie bar -->
-
-    <p>hallo: {{  this.userId }}</p>
-    <p>isAdmin: {{this.isAdmin }}</p>
-    <p>ingelogtd: {{ this.isIngelogd }}</p>
-     
+    <!-- navigatie bar -->    
 <!-- niet ingelogd -->
     <ul v-if="!isIngelogd">
       <li v-for="(page, index) in pagesNietIngelogd" :key="index" @click="changePage(page)">
