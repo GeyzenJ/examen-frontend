@@ -5,7 +5,6 @@
         </h1>
 
         <div v-if="isIngelogd">
-
             <p>hoi je bent ingelog</p>
             <form @submit.prevent="addCamping">
                 <div>
