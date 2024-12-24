@@ -42,7 +42,9 @@
         },
         methods: {
             async fetchCampingsInBeheer() {
-                const respons = await fetch("http://localhost:3000/api/campingInBeheer/" + this.userId);
+                const respons = await fetch("http://localhost:3000/api/campingInBeheer/", {
+                    credentials: 'include'
+                });
                 const data = await respons.json();
                 this.campings = data;
             },

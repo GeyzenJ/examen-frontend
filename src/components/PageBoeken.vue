@@ -78,10 +78,10 @@
                         credentials: 'include'
                     });
                     if (response.ok) {
-                        alert('Booking created successfully!');
+                        alert('Booking aangemaakt!');
                     } else {
                         const errorData = await response.json();
-                        alert(`Failed to create booking: ${errorData.message}`);
+                        alert(`Kan boeking niet plaatsen: ${errorData.message}`);
                     }
                 } catch (error) {
                     console.error('Error creating booking:', error);
