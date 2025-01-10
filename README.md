@@ -2,4 +2,4 @@
 
 Frontend voor examen Web Fundamentals.
 
-```nmp run serve```
+gebruik om het te runnen: ```nmp run serve```
