@@ -2,4 +2,4 @@
 
 Frontend voor examen Web Fundamentals.
 
-gebruik om het te runnen: ```nmp run serve```
+gebruik dit commando om het te runnen: ```nmp run serve```
