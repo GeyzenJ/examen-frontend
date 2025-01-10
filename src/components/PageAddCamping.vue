@@ -1,61 +1,62 @@
 <template>
     <div>
-        <h1>
+        <h1 class="font-bold text-[25px]">
             Camping toevoegen
         </h1>
 
         <div v-if="isIngelogd">
-            <p>hoi je bent ingelog</p>
-            <form @submit.prevent="addCamping">
-                <div>
-                    <label for="naam">Naam:</label>
-                    <input type="text" id="naam" v-model="camping.Naam" required>
+            <form @submit.prevent="addCamping" class="space-y-4 bg-white p-6 rounded shadow-md w-full max-w-md mx-auto">
+                <div class="flex items-center">
+                    <label for="naam" class="mr-2 w-1/3">Naam:</label>
+                    <input type="text" id="naam" v-model="camping.Naam" required class="block w-2/3 border border-gray-300 rounded-md p-2">
                 </div>
-                <div>
-                    <label for="plaatsElectriciteit">Plaats met Electriciteit:</label>
-                    <input type="number" id="plaatsElectriciteit" v-model="camping.Plaats_Electriciteit" required>
+                <div class="flex items-center">
+                    <label for="plaatsElectriciteit" class="mr-2 w-1/3">Plaats met Electriciteit:</label>
+                    <input type="number" id="plaatsElectriciteit" v-model="camping.Plaats_Electriciteit" required class="block w-2/3 border border-gray-300 rounded-md p-2">
                 </div>
-                <div>
-                    <label for="plaatsZonderElectriciteit">Plaats zonder Electriciteit:</label>
-                    <input type="number" id="plaatsZonderElectriciteit" v-model="camping.Plaats_Zonder_Electriciteit" required>
+                <div class="flex items-center">
+                    <label for="plaatsZonderElectriciteit" class="mr-2 w-1/3">Plaats zonder Electriciteit:</label>
+                    <input type="number" id="plaatsZonderElectriciteit" v-model="camping.Plaats_Zonder_Electriciteit" required class="block w-2/3 border border-gray-300 rounded-md p-2">
                 </div>
-                <div>
-                    <label for="zwembad">Zwembad:</label>
-                    <input type="checkbox" id="zwembad" v-model="camping.Zwembad">
+                <div class="flex items-center">
+                    <label for="zwembad" class="mr-2 w-1/3">Zwembad:</label>
+                    <input type="checkbox" id="zwembad" v-model="camping.Zwembad" class="mt-1">
                 </div>
-                <div>
-                    <label for="speeltuin">Speeltuin:</label>
-                    <input type="checkbox" id="speeltuin" v-model="camping.Speeltuin">
+                <div class="flex items-center">
+                    <label for="speeltuin" class="mr-2 w-1/3">Speeltuin:</label>
+                    <input type="checkbox" id="speeltuin" v-model="camping.Speeltuin" class="mt-1">
                 </div>
-                <div>
-                    <label for="animatie">Animatie:</label>
-                    <input type="checkbox" id="animatie" v-model="camping.Animatie">
+                <div class="flex items-center">
+                    <label for="animatie" class="mr-2 w-1/3">Animatie:</label>
+                    <input type="checkbox" id="animatie" v-model="camping.Animatie" class="mt-1">
                 </div>
-                <div>
-                    <label for="straatnaam">Straatnaam:</label>
-                    <input type="text" id="straatnaam" v-model="camping.Straatnaam" required>
+                <div class="flex items-center">
+                    <label for="straatnaam" class="mr-2 w-1/3">Straatnaam:</label>
+                    <input type="text" id="straatnaam" v-model="camping.Straatnaam" required class="block w-2/3 border border-gray-300 rounded-md p-2">
                 </div>
-                <div>
-                    <label for="huisnummer">Huisnummer:</label>
-                    <input type="text" id="huisnummer" v-model="camping.Huisnummer" required>
+                <div class="flex items-center">
+                    <label for="huisnummer" class="mr-2 w-1/3">Huisnummer:</label>
+                    <input type="text" id="huisnummer" v-model="camping.Huisnummer" required class="block w-2/3 border border-gray-300 rounded-md p-2">
                 </div>
-                <div>
-                    <label for="postcode">Postcode:</label>
-                    <input type="text" id="postcode" v-model="camping.Postcode" required>
+                <div class="flex items-center">
+                    <label for="postcode" class="mr-2 w-1/3">Postcode:</label>
+                    <input type="text" id="postcode" v-model="camping.Postcode" required class="block w-2/3 border border-gray-300 rounded-md p-2">
                 </div>
-                <div>
-                    <label for="gemeente">Gemeente:</label>
-                    <input type="text" id="gemeente" v-model="camping.Gemeente" required>
+                <div class="flex items-center">
+                    <label for="gemeente" class="mr-2 w-1/3">Gemeente:</label>
+                    <input type="text" id="gemeente" v-model="camping.Gemeente" required class="block w-2/3 border border-gray-300 rounded-md p-2">
                 </div>
-                <div>
-                    <label for="land">Land:</label>
-                    <input type="text" id="land" v-model="camping.Land" required>
+                <div class="flex items-center">
+                    <label for="land" class="mr-2 w-1/3">Land:</label>
+                    <input type="text" id="land" v-model="camping.Land" required class="block w-2/3 border border-gray-300 rounded-md p-2">
                 </div>
-                <div>
-                    <label for="bescrijving">Beschrijving:</label>
-                    <textarea id="bescrijving" v-model="camping.Bescrijving" required></textarea>
+                <div class="flex items-center">
+                    <label for="bescrijving" class="mr-2 w-1/3">Beschrijving:</label>
+                    <textarea id="bescrijving" v-model="camping.Bescrijving" required class="block w-2/3 border border-gray-300 rounded-md p-2"></textarea>
                 </div>
-                <button type="submit">Camping toevoegen</button>
+                <div class="flex justify-end space-x-2">
+                    <button type="submit" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Camping toevoegen</button>
+                </div>
             </form>
         
         </div>

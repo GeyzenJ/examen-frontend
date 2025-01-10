@@ -1,14 +1,14 @@
 <template>
     <div>
         <div v-if="!addAccount">
-            <h1>
+            <h1 class="font-bold text-[25px]">
             Camping Reserveren
             </h1>
-            <p>
+            <p class="p-[15px]">
                 Op deze webiste kan je een campingplaats reserveren.
             </p>
 
-            <div v-if="!isIngelogd">
+            <div v-if="!isIngelogd" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <button @click="changeToCreateAccount('PageAddUser')">Account Aanmaken</button>
             </div>
         </div>

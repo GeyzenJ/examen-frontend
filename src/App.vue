@@ -2,23 +2,23 @@
   <div id="app">
     <!-- navigatie bar -->    
 <!-- niet ingelogd -->
-    <ul v-if="!isIngelogd">
-      <li v-for="(page, index) in pagesNietIngelogd" :key="index" @click="changePage(page)">
+    <ul v-if="!isIngelogd" class="object-center flex flex-wrap items-center justify-evenly mx-10 p-4" >
+      <li v-for="(page, index) in pagesNietIngelogd" :key="index" @click="changePage(page)"  class="cursor-pointer hover:text-blue-500">
         {{ page }}
       </li>
-     </ul>
+     </ul>  
     <!-- ingelogd -->
      <!-- GEEN admin -->
     <div v-if="isIngelogd">
-      <ul v-if="this.isAdmin == false">
-      <li v-for="(page, index) in pagesIngelogd" :key="index" @click="changePage(page)">
+      <ul v-if="this.isAdmin == false" class="object-center flex flex-wrap items-center justify-evenly mx-10 p-4" >
+      <li v-for="(page, index) in pagesIngelogd" :key="index" @click="changePage(page)" class="cursor-pointer hover:text-blue-500">
         {{ page }}
       </li>
      </ul>
     
      <!-- ingelogd WEl admin -->
-      <ul v-if="this.isAdmin == true">
-          <li v-for="(page, index) in pagesBeheer" :key="index" @click="changePage(page)">
+      <ul v-if="this.isAdmin == true" class="object-center flex flex-wrap items-center justify-evenly mx-10 p-4" >
+          <li v-for="(page, index) in pagesBeheer" :key="index" @click="changePage(page)" class="cursor-pointer hover:text-blue-500" >
             {{ page }}
           </li>
         </ul>
@@ -109,6 +109,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+
 </style>
